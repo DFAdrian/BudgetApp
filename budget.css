@@ -1,0 +1,155 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color:#e6ebe0;
+}
+
+.app-container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.app__title{
+    text-align: center;
+}
+
+.app__title,
+.app__section,
+.visual_section{
+    width: 45%;
+    min-width: 320px;
+}
+
+.appSay{
+    max-width: 300px;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 10px;
+    padding: 4px;
+    background-color: bisque;
+    border:1px solid #f00;
+    border-radius: 5px;
+}
+
+.hidden{
+    display: none;
+}
+
+.formulario{
+    max-width: 100%;
+    padding: 1em;
+    margin-top: 3rem;
+    box-shadow: 0 0 5px #0004;
+    background-color: #ed6a5a;
+}
+
+
+.formulario__label{
+    color: #eee;
+    display: block;
+}
+
+.formulario__inp{
+    outline: none;
+    width: 95%;
+    margin: 10px 0 10px 0;
+    height: 1.8rem;
+    border:1px solid #0005;
+
+}
+
+.formulario__btn{
+    padding: .5em;
+    cursor: pointer;
+    border:1px solid #0005;
+    color: #0009;
+    background-color: #fff;
+}
+
+
+.visual-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.6rem;
+    box-shadow: 0 0 5px #ed6a5a;
+    border-radius: 1em;
+}
+
+.visual__card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+}
+
+.visual__img{
+    width: 80px;
+}
+
+.visual__span{
+    font-size: 2rem;
+}
+
+.visual__span--red{
+    color: #f00;
+}
+
+.list-container{
+    min-width: 50%;
+    margin-top: 1.6rem;
+}
+
+.list{
+    width: 100%;
+    min-width: 320px;
+    list-style: none;
+    padding-left: 0;
+}
+
+
+.li_item{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 10px;
+    box-shadow: 0 0 5px #0004;
+    padding: 5px 8px;
+    background-color:#ed6a5a;
+    color: #eee;
+}
+
+.list__span{
+    width: 20%;
+}
+
+.list__btn{
+    background-color: #eee;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 2px 2px 2px #0005;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.list__img{
+    width: 1.2em;
+    height: 1.2em;
+}
+
+@media (max-width:1300px){
+
+    .app-container{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .app__title{
+        width: 100%;
+    }
+
+    .visual-container{
+        flex-direction: column;
+    }
+}
