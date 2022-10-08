@@ -40,7 +40,7 @@ function calcBudget(){
     budget = parseInt(budgetInput.value) 
     let sum = 0;
     let rest = 0;
-    if(budgetInput.value != '' && !isNaN(budgetInput.value) && budgetInput.value > 0 ){
+    if(budgetInput.value != '' && !isNaN(budgetInput.value) && budgetInput.value > 0 && !fillBudget ){
         sum = Number(displayBudget.textContent) + Number(budgetInput.value);
         rest = Number(sum) - Number(displayExpenses.textContent)
         displayBudget.textContent = sum;
