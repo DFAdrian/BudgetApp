@@ -8,3 +8,5 @@ In this proyect I used:
 -Events
 -Timers
 You can see the BudgetApp here https://dfadrian.github.io/BudgetApp/
+
+NOTE: I used a very simple design...
