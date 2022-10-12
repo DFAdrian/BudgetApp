@@ -57,7 +57,11 @@ body{
     margin: 10px 0 10px 0;
     height: 1.8rem;
     border:1px solid #0005;
+    color: #000a;
+}
 
+.formulario__inp::placeholder{
+    color: #0003;
 }
 
 .formulario__btn{
