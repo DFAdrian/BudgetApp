@@ -48,7 +48,6 @@ storedData = JSON.parse(localStorage.getItem("expenses"));
 
 window.addEventListener('load', () => {
     if(localStorage.getItem('expenses').length > 1 && localStorage.getItem('budget') !== null ){
-        // allData = JSON.parse(localStorage.getItem('expenses'));
         budget = localStorage.getItem('budget');
         displayBudget.textContent = budget;
         calcExpenses(storedData);
