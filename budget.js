@@ -1,6 +1,7 @@
 const budgetInput= document.getElementById('budget-input');
 const budgetForm= document.getElementById('budget-form');
 const budgetSubmit= document.getElementById('budget-submit');
+const restart= document.getElementById('restart-btn');
 const firstError= document.getElementById('budget-hidden');
 const secondError= document.getElementById('amount-hidden');
 const expenseInput= document.getElementById('expense-input');
@@ -11,8 +12,10 @@ const displayExpenses= document.getElementById('display-expenses');
 const displayBalance=  document.getElementById('display-balance');
 const expenseForm=  document.getElementById('expense-form');
 const listUl=  document.getElementById("list-ul");
+let fillBudget = false;
+let id = 0;
 
-            // ////////prevendefault
+            //prevendefault
 budgetForm.addEventListener('submit',(e)=>{
 e.preventDefault()
 })
@@ -23,72 +26,128 @@ e.preventDefault();
 
 
                     // instanciar objetos 
-class Expenses {
-    constructor(exp,amo){
-        this.exp = exp,
-        this.amo = amo
+class Expense {
+    constructor(item,amount){
+        this.item = item;
+        this.amount = amount;
     } 
 }
 
-let objects = [];
-let budget;
-let fillBudget = false;
+       // budget expenses balance and array of objects(expenses)
+// let allData = [];
+let storedData = [];
+let budget = 0;
+let expenses = 0;
+let balance = 0;
 
-                // ///// budget display /////////
-                
-function calcBudget(){
-    budget = parseInt(budgetInput.value) 
-    let sum = 0;
-    let rest = 0;
-    if(budgetInput.value != '' && !isNaN(budgetInput.value) && budgetInput.value > 0 && !fillBudget ){
-        sum = Number(displayBudget.textContent) + Number(budgetInput.value);
-        rest = Number(sum) - Number(displayExpenses.textContent)
-        displayBudget.textContent = sum;
-        displayBalance.textContent = rest;
+if(localStorage.getItem("expenses") === null){
+    localStorage.setItem('expenses', JSON.stringify(storedData));
+}
+
+storedData = JSON.parse(localStorage.getItem("expenses"));
+
+window.addEventListener('load', () => {
+    if(localStorage.getItem('expenses').length > 1 && localStorage.getItem('budget') !== null ){
+        // allData = JSON.parse(localStorage.getItem('expenses'));
+        budget = localStorage.getItem('budget');
+        displayBudget.textContent = budget;
+        calcExpenses(storedData);
+        calcBalance(budget,expenses);
+        showData(expenses,balance);
         fillBudget = true;
-        budgetForm.reset()
+        displayList();
+    }
+});
+
+
+//calculate expenses and balance functions
+
+function calcExpenses(object){
+    expenses = 0;
+    object.map(el=>{
+        expenses += el.amount;
+    })
+}
+
+function calcBalance(bud,exp){
+    balance = bud - exp;
+}
+
+// Store data in local storage
+// if(localStorage.getItem("expenses") === null){
+//     localStorage.setItem('expenses', JSON.stringify(allData));
+// }
+
+// let storedData = JSON.parse(localStorage.getItem("expenses"));
+
+
+//  display data
+
+function showData(ex,bal){
+    displayExpenses.textContent = ex;
+    displayBalance.textContent = bal;
+}
+
+
+
+// show budget 
+
+function calcBudget(){
+    if(budgetInput.value != '' && !isNaN(budgetInput.value) && budgetInput.value > 0 && !fillBudget){
+        budget = parseInt(budgetInput.value);
+        displayBudget.textContent = budget;
+        fillBudget = true;
+        budgetForm.reset();
+        localStorage.setItem('budget', budget);
     }else{
         firstError.classList.remove('hidden')
         setTimeout(()=>{
             firstError.classList.add('hidden')
         },3000)
+        budgetForm.reset();
     }
 }
 
+function displayList(){
+    listUl.innerHTML = '';
+    id = 0
+    storedData.map(el=>{
+        listUl.innerHTML +=`<li class='li_item' id='${id}'><span class='list__span'>${el.item}</span><span class='list__span'>${el.amount}</span><span><button class="list__btn"><img class="list__img" src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" alt=""></button></span></li>`
+        id++;
+    })
+}
 
-let count = 0;
-let expenses = 0;
-let balance = 0;
 
 function showExpenses(){
     if(expenseInput.value != '' && isNaN(expenseInput.value) && amountInput.value > 0 && amountInput.value != '' && !isNaN(amountInput.value) && fillBudget){
-        objects.push(new Expenses(expenseInput.value,amountInput.value));
-        expenses += Number(objects[count].amo);
-        displayExpenses.textContent = expenses;
-        balance = budget - Number(displayExpenses.textContent);
-        displayBalance.textContent = balance;  
-        listUl.innerHTML +=`<li class='li_item' id='${count}'><span class='list__span'>${objects[count].exp}</span><span class='list__span'>${objects[count].amo}</span><span><button class="list__btn"><img class="list__img" src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" alt=""></button></span></li>`
-        count++
-        expenseForm.reset()
+        let num = parseInt(amountInput.value)
+        const newExpense = new Expense(expenseInput.value,num);
+        storedData.push(newExpense)
+        calcExpenses(storedData);
+        calcBalance(budget,expenses)
+        showData(expenses,balance)
+        displayList()
+        localStorage.setItem("expenses", JSON.stringify(storedData));
     }else{
         secondError.classList.remove('hidden')
-            setTimeout(()=>{
+        setTimeout(()=>{
             secondError.classList.add('hidden')
         },3000)
     }
 }
-
 
 //         // delete event
 
 listUl.addEventListener('click',(e)=>{
     if(e.target.classList.contains('list__img')){
         let getEl = e.target.parentElement.parentElement.parentElement.id
-        expenses -= Number(objects[getEl].amo)
-        balance += Number(objects[getEl].amo); 
-        displayExpenses.textContent = expenses;
-        displayBalance.textContent = balance;
-        e.target.parentElement.parentElement.parentElement.remove();
+        expenses -= storedData[getEl].amount
+        calcBalance(budget,expenses) 
+        storedData.splice(getEl,1)
+        localStorage.setItem("expenses", JSON.stringify(storedData));
+        calcExpenses(storedData)
+        showData(expenses,balance)
+        displayList()
     }
 })
 
@@ -97,3 +156,9 @@ listUl.addEventListener('click',(e)=>{
 
 budgetSubmit.addEventListener('click',calcBudget);
 expenseSubmit.addEventListener('click',showExpenses)
+restart.addEventListener('click',()=>{
+    localStorage.clear();
+    location.reload();
+})
+
+
