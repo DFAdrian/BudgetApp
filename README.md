@@ -7,6 +7,7 @@ In this proyect I used:
 -DOM
 -Events
 -Timers
+-Web Storage
 You can see the BudgetApp here https://dfadrian.github.io/BudgetApp/
 
 NOTE: I used simple design...
