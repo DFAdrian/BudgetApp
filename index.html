@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./normalize.css">
+    <link rel="stylesheet" href="/practice/Proyects/budget.css">
+    <title>BudgetApp</title>
+</head>
+<body>
+    <main class="app-container">
+        <section class="app__section">
+            <h1 class="app__title">BUDGET APP</h1>
+            <div class="appSay hidden" id="budget-hidden">
+                <p class="appSay_text" id="first-error">Values can not be empty or negatives</p>
+            </div>
+                <form class="formulario" action="#" id="budget-form">
+                    <label class="formulario__label" for="budget-input">Please Enter Your Budget</label>
+                    <input class="formulario__inp" type="number" placeholder="5000" name="budget" id="budget-input">
+                    <button class="formulario__btn" type="submit" id="budget-submit">Add Budget</button>
+                    <button class="formulario__btn" type="submit" id="restart-btn">Restart All</button>
+                </form>
+            <div class="appSay hidden" id="amount-hidden">
+                <p class="appSay_text">Values can not be empty or negatives</p>
+            </div>
+                <form action="#" class="formulario" id="expense-form">
+                    <label class="formulario__label" for="expense-input">Please Enter Your Expense</label>
+                    <input class="formulario__inp" type="text" value="" placeholder="Gas" name="expense" id="expense-input">
+                    <label class="formulario__label" for="amount-input">Please Enter Your Expense Amount</label>
+                    <input class="formulario__inp" type="number" value="" placeholder="150" name="amount" id="amount-input">
+                    <button class=" formulario__btn" type="submit" id="expense-submit">Add Expense</button>
+                </form>
+                <div class="visual-container">
+                    <div class="visual__card">
+                        <h3 class="visual__title">BUDGET</h3>
+                        <img class="visual__img" src="https://cdn-icons-png.flaticon.com/512/3344/3344807.png" alt="Money Icon">
+                        <span class="visual__span" id="display-budget">0</span>
+                    </div>
+                    <div class="visual__card">
+                        <h3 class="visual__title">EXPENSES</h3>
+                        <img class="visual__img" src="https://cdn-icons-png.flaticon.com/512/3211/3211504.png" alt="Card Icon">
+                        <span class="visual__span"  id="display-expenses">0</span>
+                    </div>
+                    <div class="visual__card">
+                        <h3 class="visual__title">BALANCE</h3>
+                        <img class="visual__img" src="https://cdn-icons-png.flaticon.com/512/2530/2530493.png" alt="money sign Icon">
+                        <span class="visual__span" id="display-balance">0</span>
+                    </div>
+                </div>
+        </section>
+            <div class="list-container"> 
+                <ul class="list" id="list-ul">            
+                </ul>
+            </div>
+    </main>
+    <script src="/practice/Proyects/budget.js"></script>
+</body>
+</html>
