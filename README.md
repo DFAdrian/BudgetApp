@@ -8,6 +8,6 @@ In this proyect I used:
 -Events
 -Timers
 -Web Storage
-You can see the BudgetApp here https://dfadrian.github.io/BudgetApp/
+You can see the BudgetApp here 
 
 NOTE: I used simple design...
