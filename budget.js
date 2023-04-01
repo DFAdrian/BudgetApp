@@ -128,11 +128,13 @@ function showExpenses(){
         showData(expenses,balance)
         displayList()
         localStorage.setItem("expenses", JSON.stringify(storedData));
+        expenseForm.reset()
     }else{
         secondError.classList.remove('hidden')
         setTimeout(()=>{
             secondError.classList.add('hidden')
         },3000)
+        expenseForm.reset()
     }
 }
 
