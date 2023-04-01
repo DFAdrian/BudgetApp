@@ -140,18 +140,36 @@ function showExpenses(){
 
 //         // delete event
 
+let getEl;
+
+
+function confirmated(){
+    expenses -= storedData[getEl].amount
+    calcBalance(budget,expenses) 
+    storedData.splice(getEl,1)
+    localStorage.setItem("expenses", JSON.stringify(storedData));
+    calcExpenses(storedData)
+    showData(expenses,balance)
+    displayList()
+}
+
 listUl.addEventListener('click',(e)=>{
     if(e.target.classList.contains('list__img')){
-        let getEl = e.target.parentElement.parentElement.parentElement.id
-        expenses -= storedData[getEl].amount
-        calcBalance(budget,expenses) 
-        storedData.splice(getEl,1)
-        localStorage.setItem("expenses", JSON.stringify(storedData));
-        calcExpenses(storedData)
-        showData(expenses,balance)
-        displayList()
+        getEl = e.target.parentElement.parentElement.parentElement.id
+        document.querySelector('.deleteModal').style.display = 'flex';
     }
 })
+
+
+confirm.addEventListener('click',()=>{
+    let confirmDelete = true;
+    confirmated()
+    document.querySelector('.deleteModal').style.display = 'none'
+})
+
+cancel.addEventListener('click',()=>{
+    document.querySelector('.deleteModal').style.display = 'none'
+});
 
                                  // buttons events 
 
