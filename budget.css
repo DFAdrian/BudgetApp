@@ -220,6 +220,7 @@ body{
     margin-top: .3rem;
     box-shadow: 0 0 5px #0002;
     background-color: var(--bg-cl);
+    padding: 0 1em;
 }
 
 .visual__card{
