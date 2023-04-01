@@ -5,7 +5,7 @@
     --linear-bg: linear-gradient(to right,#711F8D,#A818DA);
     --bg-cl:#282828;
     --form-cl:#363636;
-    --body-bg:#00564d;
+    --body-bg:#00897b;
     --invalid-color:#00897b;
 }
 
@@ -33,8 +33,9 @@ body{
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    color: var(--text-cl);
-    background-color: var(--bg-cl);
+    /* color: var(--text-cl); */
+    color: var(--bg-cl);
+    /* background-color: var(--bg-cl); */
     padding: .3rem;
 }
 
@@ -175,17 +176,15 @@ body{
 .formulario{
     max-width: 100%;
     padding: 1em;
-    /* margin-top: 1.2rem; */
     box-shadow: 0 0 5px #0004;
     background-color: var(--bg-cl);
-    opacity: .9;
 }
 
 
 .formulario__label{
     color: var(--text-cl);
     display: block;
-    /* margin: 1rem 0 .8rem; */
+    font-size: 1.1rem;
 }
 
 .formulario__inp{
@@ -210,7 +209,9 @@ body{
     cursor: pointer;
     color: var(--buttons-cl);
     border-radius: 3px;
+    font-weight: bold;
     background-color: var(--buttons-bg);
+    box-shadow: 1px 1px 5px #000;
 }
 
 
@@ -334,14 +335,15 @@ body{
   align-items: center;
   width: 100%;
   height: 100vh;
-  background-color: #0004;
+  background-color: #0009;
 }
 
 .modal{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background-color: #fff;
+  background-color: var(--bg-cl);
+  color: var(--text-cl);
   width: 250px;
   height: 150px;
   padding: 1rem;
@@ -356,6 +358,8 @@ body{
 
 .modal__btns button{
   width: 35%;
+  background-color: var(--buttons-bg);
+  color: var(--buttons-cl);
   cursor: pointer;
 }
 
