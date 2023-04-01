@@ -162,7 +162,6 @@ listUl.addEventListener('click',(e)=>{
 
 
 confirm.addEventListener('click',()=>{
-    let confirmDelete = true;
     confirmated()
     document.querySelector('.deleteModal').style.display = 'none'
 })
