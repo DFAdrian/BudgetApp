@@ -5,8 +5,9 @@
     --linear-bg: linear-gradient(to right,#711F8D,#A818DA);
     --bg-cl:#282828;
     --form-cl:#363636;
-    --body-bg:#00897b;
     --invalid-color:#00897b;
+    --body-bg:#100a1f;
+    --title-app:#fff;
 }
 
 *{
@@ -34,7 +35,7 @@ body{
     margin-left: auto;
     margin-right: auto;
     /* color: var(--text-cl); */
-    color: var(--bg-cl);
+    color: var(--title-app);
     /* background-color: var(--bg-cl); */
     padding: .3rem;
 }
