@@ -12,8 +12,11 @@ const displayExpenses= document.getElementById('display-expenses');
 const displayBalance=  document.getElementById('display-balance');
 const expenseForm=  document.getElementById('expense-form');
 const listUl=  document.getElementById("list-ul");
+const cancel = document.getElementById('modal-false');
+const confirm =document.getElementById('modal-true');
 let fillBudget = false;
 let id = 0;
+
 
             //prevendefault
 budgetForm.addEventListener('submit',(e)=>{
@@ -34,7 +37,6 @@ class Expense {
 }
 
        // budget expenses balance and array of objects(expenses)
-// let allData = [];
 let storedData = [];
 let budget = 0;
 let expenses = 0;
@@ -48,7 +50,6 @@ storedData = JSON.parse(localStorage.getItem("expenses"));
 
 window.addEventListener('load', () => {
     if(localStorage.getItem('expenses').length > 1 && localStorage.getItem('budget') !== null ){
-        // allData = JSON.parse(localStorage.getItem('expenses'));
         budget = localStorage.getItem('budget');
         displayBudget.textContent = budget;
         calcExpenses(storedData);
@@ -73,15 +74,8 @@ function calcBalance(bud,exp){
     balance = bud - exp;
 }
 
-// Store data in local storage
-// if(localStorage.getItem("expenses") === null){
-//     localStorage.setItem('expenses', JSON.stringify(allData));
-// }
-
-// let storedData = JSON.parse(localStorage.getItem("expenses"));
 
 
-//  display data
 
 function showData(ex,bal){
     displayExpenses.textContent = ex;
@@ -138,7 +132,7 @@ function showExpenses(){
     }
 }
 
-//         // delete event
+// delete event
 
 let getEl;
 
@@ -170,7 +164,8 @@ cancel.addEventListener('click',()=>{
     document.querySelector('.deleteModal').style.display = 'none'
 });
 
-                                 // buttons events 
+
+// buttons events 
 
 
 budgetSubmit.addEventListener('click',calcBudget);
