@@ -102,14 +102,54 @@ function calcBudget(){
     }
 }
 
-function displayList(){
-    listUl.innerHTML = '';
-    id = 0
-    storedData.map(el=>{
-        listUl.innerHTML +=`<li class='li_item' id='${id}'><span class='list__span'>${el.item}</span><span class='list__span'>${el.amount}</span><span><button class="list__btn"><img class="list__img" src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" alt=""></button></span></li>`
-        id++;
-    })
+function displayList() {
+  listUl.innerHTML = '';
+  id = 0;
+  const fragment = document.createDocumentFragment();
+
+  storedData.forEach((el) => {
+    const li = document.createElement('li');
+    li.className = 'li_item';
+    li.id = id;
+
+    const itemSpan = document.createElement('span');
+    itemSpan.className = 'list__span';
+    itemSpan.textContent = el.item;
+    li.appendChild(itemSpan);
+
+    const amountSpan = document.createElement('span');
+    amountSpan.className = 'list__span';
+    amountSpan.textContent = el.amount;
+    li.appendChild(amountSpan);
+
+    const buttonSpan = document.createElement('span');
+    const deleteButton = document.createElement('button');
+    deleteButton.className = 'list__btn';
+    const deleteImage = document.createElement('img');
+    deleteImage.className = 'list__img';
+    deleteImage.src = 'https://cdn-icons-png.flaticon.com/512/1214/1214428.png';
+    deleteImage.alt = '';
+    deleteButton.appendChild(deleteImage);
+    buttonSpan.appendChild(deleteButton);
+    li.appendChild(buttonSpan);
+
+    fragment.appendChild(li);
+    id++;
+  });
+
+  listUl.appendChild(fragment);
 }
+
+
+
+// function displayList(){
+//     listUl.innerHTML = '';
+//     id = 0
+//     storedData.map(el=>{
+//         listUl.innerHTML +=`<li class='li_item' id='${id}'><span class='list__span'>${el.item}</span><span class='list__span'>${el.amount}</span><span><button class="list__btn"><img class="list__img" src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" alt=""></button></span></li>`
+//         id++;
+//     })
+// }
 
 
 function showExpenses(){
